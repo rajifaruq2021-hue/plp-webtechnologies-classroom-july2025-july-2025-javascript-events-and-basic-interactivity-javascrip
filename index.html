@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6 - Interactive Page - Raji Faruq Ishola</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>My Interactive Control Panel</h1>
+        <!-- Interactive Feature 1: Theme Toggle Button -->
+        <button id="theme-toggle">Toggle Dark Mode</button>
+    </header>
+
+    <main>
+        <!-- Interactive Feature 2: Character Counter -->
+        <section class="card">
+            <h2>Character Counter</h2>
+            <p>Type a message below and see the character count update in real-time.</p>
+            <textarea id="message-input" maxlength="150" placeholder="Type here..."></textarea>
+            <p>Characters: <span id="char-counter">0</span> / 150</p>
+        </section>
+
+        <!-- Form with Custom JavaScript Validation -->
+        <section class="card">
+            <h2>Registration Form</h2>
+            <form id="contact-form" novalidate>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                    <span class="error" id="name-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                    <span class="error" id="email-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+                    <span class="error" id="password-error"></span>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
