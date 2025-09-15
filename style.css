@@ -1,79 +1,85 @@
-// Wait for the entire HTML page to load before running the script
-document.addEventListener('DOMContentLoaded', () => {
+/* Basic Light Mode Styles */
+:root {
+    --bg-color: #f4f7f6;
+    --card-bg-color: #ffffff;
+    --text-color: #333333;
+    --header-bg-color: #3498db;
+    --header-text-color: #ffffff;
+    --button-bg-color: #3498db;
+    --error-color: #e74c3c;
+}
 
-    // --- PART 1 & 2: Interactive Features ---
+/* Dark Mode Styles - applied when body has 'dark-mode' class */
+body.dark-mode {
+    --bg-color: #2c3e50;
+    --card-bg-color: #34495e;
+    --text-color: #ecf0f1;
+    --header-bg-color: #1a2533;
+    --button-bg-color: #8e44ad;
+}
 
-    // --- Feature 1: Light/Dark Mode Toggle ---
-    const themeToggleButton = document.getElementById('theme-toggle');
-    const body = document.body;
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-    // Listen for a click on the toggle button
-    themeToggleButton.addEventListener('click', () => {
-        // The 'toggle' method adds the class if it's not there, and removes it if it is.
-        body.classList.toggle('dark-mode');
-    });
+header {
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
 
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
-    // --- Feature 2: Character Counter ---
-    const messageInput = document.getElementById('message-input');
-    const charCounter = document.getElementById('char-counter');
+.form-group {
+    margin-bottom: 15px;
+}
 
-    // Listen for any input (typing, pasting, etc.) in the textarea
-    messageInput.addEventListener('input', () => {
-        const currentLength = messageInput.value.length;
-        charCounter.textContent = currentLength;
-    });
+label {
+    display: block;
+    margin-bottom: 5px;
+}
 
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important for padding */
+}
 
-    // --- PART 3: Custom Form Validation ---
-    const form = document.getElementById('contact-form');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
 
-    const nameError = document.getElementById('name-error');
-    const emailError = document.getElementById('email-error');
-    const passwordError = document.getElementById('password-error');
+button {
+    background-color: var(--button-bg-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
 
-    // Listen for the form's 'submit' event
-    form.addEventListener('submit', (event) => {
-        // This is crucial: it stops the form from reloading the page
-        event.preventDefault(); 
-        
-        let isValid = true; // Assume the form is valid initially
-
-        // --- Validation Logic ---
-
-        // 1. Name Validation (must not be empty)
-        if (nameInput.value.trim() === '') {
-            nameError.textContent = 'Name is required.';
-            isValid = false;
-        } else {
-            nameError.textContent = '';
-        }
-
-        // 2. Email Validation (must contain '@')
-        if (!emailInput.value.includes('@')) {
-            emailError.textContent = 'Please enter a valid email address.';
-            isValid = false;
-        } else {
-            emailError.textContent = '';
-        }
-
-        // 3. Password Validation (must be at least 8 characters)
-        if (passwordInput.value.length < 8) {
-            passwordError.textContent = 'Password must be at least 8 characters long.';
-            isValid = false;
-        } else {
-            passwordError.textContent = '';
-        }
-
-
-        // --- Final Submission Check ---
-        if (isValid) {
-            alert('Form submitted successfully!');
-            form.reset(); // Clear the form fields
-        }
-    });
-
-});
+.error {
+    color: var(--error-color);
+    font-size: 0.9em;
+    height: 1em; /* Prevents layout shifts */
+    display: block;
+}
